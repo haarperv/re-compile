@@ -22,9 +22,9 @@ public class MCPMappingLoader {
   private final String baseSrgDir = "{mc_ver}";
   private final String baseMappingDir = "{mc_ver}/{channel}_{map_ver}";
   private final String baseMappingUrl =
-    "https://github.com/ModCoderPack/MCPMappingsArchive/raw/master/mcp_%7Bchannel%7D/%7Bmap_ver%7D-%7Bmc_ver%7D/mcp_%7Bchannel%7D-%7Bmap_ver%7D-%7Bmc_ver%7D.zip";
+    "https://github.com/ModCoderPack/MCPMappingsArchive/raw/master/mcp_{channel}/{map_ver}-{mc_ver}/mcp_{channel}-{map_ver}-{mc_ver}.zip";
   private final String baseSrgUrl =
-    "https://github.com/ModCoderPack/MCPMappingsArchive/raw/master/mcp/%7Bmc_ver%7D/mcp-%7Bmc_ver%7D-srg.zip";
+    "https://github.com/ModCoderPack/MCPMappingsArchive/raw/master/mcp/{mc_ver}/mcp-{mc_ver}-srg.zip";
   
   private final File srgDir;
   private final File mappingDir;
