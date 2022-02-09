@@ -32,8 +32,8 @@ We have extra textures! Upload [HERE](http://texture.fantabos.co)
 
 This mod will get data from:
 * Minecraft's API (api.mojang.com, sessionserver.mojang.com)
-* 2b2tatlas.com
-* data.fantabos.co
+* 2b2tatlas.com (only if using Atlas mod, will never send your coords)
+* data.fantabos.co (only if using custom Capes)
 * irc.fantabos.co (only if using IRC)
 
 This is relatively safe, as it is essentially just going to these websites on a browser. **Any connection to any service will make its source known to the receiving server**.
