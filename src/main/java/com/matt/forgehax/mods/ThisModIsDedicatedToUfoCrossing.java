@@ -9,6 +9,9 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.network.play.server.SPacketSpawnPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,8 +28,23 @@ public class ThisModIsDedicatedToUfoCrossing extends ToggleMod {
           .defaultTo("hello uwu")
           .build();
 
+  private final Setting<Integer> cooldown =
+      getCommandStub()
+          .builders()
+          .<Integer>newSettingBuilder()
+          .name("cooldown")
+          .description("Minimum cooldown to be notified again of a player (in milliseconds)")
+          .defaultTo(0)
+          .build();
+
   public ThisModIsDedicatedToUfoCrossing() {
     super(Category.CHAT, "MessageNearby", false, "Automatically send a message to whoever comes into render distance");
+  }
+
+  HashMap<UUID, Long> lastSeen = new HashMap<>();
+
+  private boolean seenRecently(UUID player) {
+    return lastSeen.containsKey(player) && ZonedDateTime.now().toInstant().toEpochMilli() - lastSeen.get(player) > cooldown.get();
   }
 
   @SubscribeEvent
@@ -39,6 +57,7 @@ public class ThisModIsDedicatedToUfoCrossing extends ToggleMod {
         .map(GameProfile::getName)
         .ifPresent(name -> {
           MC.player.sendChatMessage("/w " + name + " " + message.get());
+          lastSeen.put(id, ZonedDateTime.now().toInstant().toEpochMilli());
         });
     }
   }
