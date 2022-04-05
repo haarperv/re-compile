@@ -44,7 +44,7 @@ public class ThisModIsDedicatedToUfoCrossing extends ToggleMod {
   private HashMap<UUID, Long> lastSeen = new HashMap<>();
 
   private boolean seenRecently(UUID player) {
-    return lastSeen.containsKey(player) && ZonedDateTime.now().toInstant().toEpochMilli() - lastSeen.get(player) > cooldown.get();
+    return lastSeen.containsKey(player) && ZonedDateTime.now().toInstant().toEpochMilli() - lastSeen.get(player) < cooldown.get();
   }
 
   @SubscribeEvent
@@ -56,7 +56,7 @@ public class ThisModIsDedicatedToUfoCrossing extends ToggleMod {
         .map(NetworkPlayerInfo::getGameProfile)
         .map(GameProfile::getName)
         .ifPresent(name -> {
-          if(seenRecently(id)) {
+          if(!seenRecently(id)) {
             MC.player.sendChatMessage("/w " + name + " " + message.get());
             lastSeen.put(id, ZonedDateTime.now().toInstant().toEpochMilli());
           }
