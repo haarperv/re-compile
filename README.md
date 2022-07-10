@@ -28,7 +28,7 @@ No really, fr1kin's wiki is well kept and covers some basic and generic shit. I 
 
 We have extra textures! Upload [HERE](http://texture.fantabos.co)
 
-## External Connections (Read this if you don't want to leak your IP)
+## External Connections (read this if you don't want to leak your IP)
 
 This mod will get data from:
 * Minecraft's API (api.mojang.com, sessionserver.mojang.com)
